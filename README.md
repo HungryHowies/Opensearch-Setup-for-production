@@ -128,6 +128,7 @@ curl https://opensearch.hungry-howard.com:9200 -u admin:Password123 -k
 ```
 ## Opensearch-Dashboards
 Configure the following.
+
 ```
 grep -Ev ^'(#|$)' opensearch_dashboards.yml
 ```
@@ -149,6 +150,5 @@ opensearch_security.readonly_mode.roles: [kibana_read_only]
 opensearch_security.cookie.secure: false
 server.ssl.certificate: /etc/opensearch-dashboards/node1.pem
 server.ssl.key: /etc/opensearch-dashboards/node1-key.pem
-server.ssl.certificateAuthorities: [ "/etc/opensearch-dashboards/root-ca.pem"]
 opensearch.ssl.certificateAuthorities: [ "/etc/opensearch-dashboards/root-ca.pem"]
 ```
