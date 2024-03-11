@@ -76,6 +76,8 @@ sudo openssl req -new -x509 -sha256 -key root-ca-key.pem -subj "/C=US/ST=IOWA/L=
 ```
 
 create the admin certificate.
+
+ The admin certs can not be the same as node certs.
 ```
 sudo openssl genrsa -out admin-key-temp.pem 2048
 ```
