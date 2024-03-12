@@ -82,7 +82,7 @@ sudo rm -f *pem
 sudo openssl genrsa -out root-ca-key.pem 2048
 ```
 ```
-sudo openssl req -new -x509 -sha256 -key root-ca-key.pem -subj "/C=US/ST=IOWA/L=CEDAR/O=ZITADEL/OU=ADMIN/CN=opensearch.hungry-howard.com" -out root-ca.pem -days 730
+sudo openssl req -new -x509 -sha256 -key root-ca-key.pem -subj "/C=US/ST=IOWA/L=CEDAR/O=ZITADEL/OU=ADMIN/CN=ROOT" -out root-ca.pem -days 730
 ```
 
 ### Create the admin certificate.
