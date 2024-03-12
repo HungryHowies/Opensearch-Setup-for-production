@@ -284,6 +284,11 @@ Check Permission
 ```
 chown opensearch-dashboards:opensearch-dashboards node1-key.pem node1.pem root-ca.pem
 ```
+
+Incert certifictae in keystory
+```
+keytool -import -alias opensearch.hungry-howard.com  -file root-ca.pem  -keystore /usr/lib/jvm/java-17-openjdk-amd64/lib/security/cacerts -storepass changeit
+```
 ### Restart Services
 
 ```
