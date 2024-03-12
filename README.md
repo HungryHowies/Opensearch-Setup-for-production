@@ -4,23 +4,29 @@ The following documentation is for basic configuration for production setup.
 
 ### Download OpenSearch
 Download both OpenSearch and OpenSearch-Dashboards packages.
+
 ```
 wget https://artifacts.opensearch.org/releases/bundle/opensearch/2.11.1/opensearch-2.11.1-linux-x64.deb
 ```
 ```
 wget https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/2.11.1/opensearch-dashboards-2.11.1-linux-x64.deb
 ```
+
 Extract and install OpenSearch package.
+
 ```
 sudo dpkg -i opensearch-2.11.1-linux-x64.deb
 ```
-Reload , Enable and Start service.
+
+Reload, Enable and Start service.
+
 ```
 sudo systemctl daemon-reload
 ```
 ```
 sudo systemctl enable opensearch.service
 ```
+
 Install java 17
 
 By Default JAVA 17 is installed.
@@ -30,6 +36,7 @@ Check status
 ```
 java -version
 ```
+
 Set Java Home.
 
 ```
@@ -37,26 +44,32 @@ readlink -f `which java` | sed "s:/bin/java::"
 ```
 
 This is a temporary command.
+
 ```
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ```
 
 ### For a more permanent JAVA home configuration.
 Make backup. 
+
 ```
 cp ~/.bashrc ~/.bashrc.bak
 ```
 
 Append using echo.
+
 ```
 echo "export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> ~/.bashrc
 ```
 
 Start Opensearch.
+
 ```
 sudo systemctl start  opensearch.service
 ```
+
 Test  connection  and plugins.
+
 ```
 curl -X GET https://localhost:9200 -u 'admin:admin' --insecure
 ```
@@ -65,6 +78,7 @@ curl -X GET https://localhost:9200/_cat/plugins?v -u 'admin:admin' --insecure
 ```
 
 Set Heap.
+
 ```
 vi /etc/opensearch/jvm.options
 ```
@@ -72,6 +86,7 @@ vi /etc/opensearch/jvm.options
 ### Generate a root certificate.
 
 Change directory.
+
 ```
 cd /etc/opensearch
 ```
@@ -88,6 +103,7 @@ sudo openssl req -new -x509 -sha256 -key root-ca-key.pem -subj "/C=US/ST=IOWA/L=
 ### Create the admin certificate.
 
  The admin certs cannot be the same as node certs.
+ 
 ```
 sudo openssl genrsa -out admin-key-temp.pem 2048
 ```
@@ -102,6 +118,7 @@ sudo openssl x509 -req -in admin.csr -CA root-ca.pem -CAkey root-ca-key.pem -CAc
 ```
 
 ### Create a certificate for the node/s.
+
 ```
 sudo openssl genrsa -out node1-key-temp.pem 2048
 ```
@@ -123,6 +140,7 @@ sudo chown opensearch:opensearch admin-key.pem admin.pem node1-key.pem node1.pem
 ###   Opensearch Configuration file
 
 Edit OpenSearch configuration file.
+
 ```
 sudo vi /etc/opensearch/opensearch.yml
 ```
@@ -159,7 +177,9 @@ plugins.security.nodes_dn:
   - 'CN=opensearch.hungry-howard.com,OU=ADMIN,O=ZITADEL,L=CEDAR,ST=IOWA,C=US'
 ```
 ###  Run the hash script 
-This is for Admin password.
+
+This is for New User password.
+
 ```
 cd /usr/share/opensearch/plugins/opensearch-security/tools
 ```
@@ -167,17 +187,18 @@ cd /usr/share/opensearch/plugins/opensearch-security/tools
 ./hash.sh
 ```
 Copy the  output and place it in the file.
+
 ```
 vi /etc/opensearch/opensearch-security/internal_users.yml
 ```
 In  this section.
+
 ```
-admin:
+new_user1:
   	hash: "$2y$12$OKDLCZ1qLXnA5AMLKeKdIueW0e3m1y0nVf/GEBzom1BxNOykpw0Ee"
- 	 reserved: true
- 	 backend_roles:
- 	 - "admin"
-  description: "Demo admin user"
+ 	 reserved: false
+ 	 backend_roles:[] 	 
+  description: "New User"
 ```
 
 ###  Execute security script.
