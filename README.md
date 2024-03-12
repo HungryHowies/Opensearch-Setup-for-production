@@ -267,9 +267,20 @@ server.ssl.certificate: /etc/opensearch-dashboards/node1.pem
 server.ssl.key: /etc/opensearch-dashboards/node1-key.pem
 opensearch.ssl.certificateAuthorities: /etc/opensearch-dashboards/root-ca.pem
 ```
+
+Copy Node and  root Certificates and place them in Opensearch-Dashboards directory.
+
+Change directory.
+
+```
+cd /etc/opensearch
+```
+Copy certificates
+```
+cp node1-key.pem node1.pem root-ca.pem /etc/opensearch-dashboards/
+```
 ### Restart Services
 
-Opensearch
 ```
 systemctl restart opensearch
 ```
