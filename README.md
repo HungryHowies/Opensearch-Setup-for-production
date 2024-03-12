@@ -1,6 +1,6 @@
 # OpenSearch And OpenSearch-Dashboard Setup for Production
 
-The following documentation is for basic configuration for production setup using SAML. The IDP is with Zitadel Setup.
+The following documentation is for basic configuration for production setup.
 
 Install java 17
 
