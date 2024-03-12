@@ -213,6 +213,24 @@ curl https://opensearch.hungry-howard.com:9200 -u admin:Password123 -k
 ```
 ## OpenSearch-Dashboards
 
+Install Opensearch-Dashboards
+
+```
+sudo dpkg -i opensearch-dashboards-2.12.0-linux-x64.deb
+```
+
+Reload systemd
+
+```
+sudo systemctl daemon-reload
+```
+Enable Opensearch-Dashboards. Start Opensearch-Dashboards after the configuration file is set.
+
+```
+sudo systemctl enable opensearch-dashboards.service
+```
+
+
 Configure the following in Opensearch-Dashboards.yaml file. 
 ```
 grep -Ev ^'(#|$)' opensearch_dashboards.yml 
