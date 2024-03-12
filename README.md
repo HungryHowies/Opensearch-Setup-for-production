@@ -121,8 +121,40 @@ sudo openssl x509 -req -in node1.csr -CA root-ca.pem -CAkey root-ca-key.pem -CAc
 ```
 sudo chown opensearch:opensearch admin-key.pem admin.pem node1-key.pem node1.pem root-ca-key.pem root-ca.pem
 ```
+###   Opensearch Configuration file
 
-## Run the hash script 
+The configuration below also shows the settings needed for SSO using SAML.
+
+```
+path.data: /var/lib/opensearch
+path.logs: /var/log/opensearch
+network.host: 172.31.25.73 
+http.port: 9200
+discovery.type: single-node
+plugins.security.disabled: false
+plugins.security.ssl.transport.enforce_hostname_verification: false
+plugins.security.ssl.http.enabled: true
+plugins.security.allow_unsafe_democertificates: true
+plugins.security.allow_default_init_securityindex: true
+plugins.security.audit.type: internal_opensearch
+plugins.security.enable_snapshot_restore_privilege: true
+plugins.security.check_snapshot_restore_write_privileges: true
+plugins.security.restapi.roles_enabled: ["all_access", "security_rest_api_access"]
+plugins.security.system_indices.enabled: true
+plugins.security.system_indices.indices: [".plugins-ml-config", ".plugins-ml-connector", ".plugins-ml-model-group", ".plugins-ml-model", ".plugins-ml-task", ".plugins-ml-conversation-meta", ".plugins-ml-conversation-interactions", ".opendistro-alerting-config", ".opendistro-alerting-alert*", ".opendistro-anomaly-results*", ".opendistro-anomaly-detector*", ".opendistro-anomaly-checkpoints", ".opendistro-anomaly-detection-state", ".opendistro-reports-*", ".opensearch-notifications-*", ".opensearch-notebooks", ".opensearch-observability", ".ql-datasources", ".opendistro-asynchronous-search-response*", ".replication-metadata-store", ".opensearch-knn-models", ".geospatial-ip2geo-data*"]
+node.max_local_storage_nodes: 3
+plugins.security.ssl.transport.pemcert_filepath: /etc/opensearch/node1.pem
+plugins.security.ssl.transport.pemkey_filepath: /etc/opensearch/node1-key.pem
+plugins.security.ssl.transport.pemtrustedcas_filepath: /etc/opensearch/root-ca.pem
+plugins.security.ssl.http.pemcert_filepath: /etc/opensearch/node1.pem
+plugins.security.ssl.http.pemkey_filepath: /etc/opensearch/node1-key.pem
+plugins.security.ssl.http.pemtrustedcas_filepath: /etc/opensearch/root-ca.pem
+plugins.security.authcz.admin_dn:
+  - 'CN=ADMIN,OU=ADMIN,O=ZITADEL,L=CEDAR,ST=IOWA,C=US'
+plugins.security.nodes_dn:
+  - 'CN=opensearch.hungry-howard.com,OU=ADMIN,O=ZITADEL,L=CEDAR,ST=IOWA,C=US'
+```
+###  Run the hash script 
 This is for Admin password.
 ```
 cd /usr/share/opensearch/plugins/opensearch-security/tools
@@ -190,4 +222,15 @@ opensearch_security.readonly_mode.roles: [kibana_read_only]
 opensearch_security.cookie.secure: true
 server.ssl.certificate: /etc/opensearch-dashboards/node1.pem
 server.ssl.key: /etc/opensearch-dashboards/node1-key.pem
-opensearch.ssl.certificateAuthorities: /etc/opensearch-dashboards/root-ca.pem ```
+opensearch.ssl.certificateAuthorities: /etc/opensearch-dashboards/root-ca.pem
+```
+### Restart Services
+
+Opensearch
+```
+systemctl restart opensearch
+```
+Opensearch-dashboards
+```
+systemctl restart opensearch-dashboards
+```
