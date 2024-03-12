@@ -145,14 +145,7 @@ admin:
 ```
 
 ###  Execute security script.
- This applies  and new configurations. 
-
-```
-./securityadmin.sh -h opensearch.hungry-howard.com -f /etc/opensearch/opensearch-security/config.yml   -cacert /etc/opensearch/root-ca.pem -cert /etc/opensearch/admin.pem -key /etc/opensearch/admin-key.pem -icl -nhnv
-```
-
-If you configured multiple files this command covers them all.
- 
+  
 ```
 ./securityadmin.sh -h opensearch.hungry-howard.com  -cd /etc/opensearch/opensearch-security/ -cacert /etc/opensearch/root-ca.pem -cert /etc/opensearch/admin.pem -key /etc/opensearch/admin-key.pem -icl -nhnv
 ```
@@ -169,8 +162,10 @@ grep -Ev ^'(#|$)' opensearch_dashboards.yml
 ```
 
 Example:
+
+This has  the default configurations need for Production setup and also  the configurations needed for SSO  using SAML.
+
 ```
----
 ---
 server.port: 5601
 server.host: "opensearch.hungry-howard.com"
