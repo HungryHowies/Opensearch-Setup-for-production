@@ -4,13 +4,13 @@ The following documentation is for basic configuration for production setup.
 
 Install java 17
 
+By Default JAVA 17 is installed.
+
+Check status
+
 ```
 java -version
 ```
-```
-apt install openjdk-17-jre-headless
-```
-
 Set Java Home
 
 ```
