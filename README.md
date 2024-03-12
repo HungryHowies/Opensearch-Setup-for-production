@@ -2,6 +2,25 @@
 
 The following documentation is for basic configuration for production setup.
 
+### Download OpenSearch
+Download both OpenSearch and OpenSearch-Dashboards packages.
+```
+wget https://artifacts.opensearch.org/releases/bundle/opensearch/2.11.1/opensearch-2.11.1-linux-x64.deb
+```
+```
+wget https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/2.11.1/opensearch-dashboards-2.11.1-linux-x64.deb
+```
+Extract and install OpenSearch package.
+```
+sudo dpkg -i opensearch-2.11.1-linux-x64.deb
+```
+Reload , Enable and Start service.
+```
+sudo systemctl daemon-reload
+```
+```
+sudo systemctl enable opensearch.service
+```
 Install java 17
 
 By Default JAVA 17 is installed.
@@ -11,7 +30,7 @@ Check status
 ```
 java -version
 ```
-Set Java Home
+Set Java Home.
 
 ```
 readlink -f `which java` | sed "s:/bin/java::"
@@ -32,25 +51,8 @@ Append using echo.
 ```
 echo "export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> ~/.bashrc
 ```
-### Download OpenSearch
-Download both OpenSearch and OpenSearch-Dashboards packages.
-```
-wget https://artifacts.opensearch.org/releases/bundle/opensearch/2.11.1/opensearch-2.11.1-linux-x64.deb
-```
-```
-wget https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/2.11.1/opensearch-dashboards-2.11.1-linux-x64.deb
-```
-Extract and install OpenSearch package.
-```
-sudo dpkg -i opensearch-2.11.1-linux-x64.deb
-```
-Reload , Enable and Start service.
-```
-sudo systemctl daemon-reload
-```
-```
-sudo systemctl enable opensearch.service
-```
+
+Start Opensearch.
 ```
 sudo systemctl start  opensearch.service
 ```
