@@ -61,10 +61,7 @@ curl -X GET https://localhost:9200 -u 'admin:admin' --insecure
 ```
 curl -X GET https://localhost:9200/_cat/plugins?v -u 'admin:admin' --insecure
 ```
-Edit OpenSearch configuration file.
-```
-sudo vi /etc/opensearch/opensearch.yml
-```
+
 Set Heap.
 ```
 vi /etc/opensearch/jvm.options
@@ -122,6 +119,11 @@ sudo openssl x509 -req -in node1.csr -CA root-ca.pem -CAkey root-ca-key.pem -CAc
 sudo chown opensearch:opensearch admin-key.pem admin.pem node1-key.pem node1.pem root-ca-key.pem root-ca.pem
 ```
 ###   Opensearch Configuration file
+
+Edit OpenSearch configuration file.
+```
+sudo vi /etc/opensearch/opensearch.yml
+```
 
 The configuration below also shows the settings needed for SSO using SAML.
 
