@@ -233,7 +233,7 @@ cd /home
 Install Opensearch-Dashboards
 
 ```
-sudo dpkg -i opensearch-dashboards-2.12.0-linux-x64.deb
+sudo dpkg -i opensearch-dashboards-2.11.1-linux-x64.deb
 ```
 
 Reload systemd
