@@ -218,6 +218,11 @@ curl https://opensearch.hungry-howard.com:9200 -u admin:Password123 -k
 ```
 ## OpenSearch-Dashboards
 
+Change directory
+```
+cd /home
+```
+
 Install Opensearch-Dashboards
 
 ```
