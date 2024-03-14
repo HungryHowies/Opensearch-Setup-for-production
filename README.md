@@ -201,6 +201,10 @@ admin:
   - "admin"
   description: "Demo admin user"
 ```
+Restart Opensearch service.
+```
+systemctl restart opensearch
+```
 
 ###  Execute security script.
   
