@@ -301,8 +301,13 @@ Copy certificates
 ```
 cp node1-key.pem node1.pem root-ca.pem /etc/opensearch-dashboards/
 ```
+Chnage directory 
 
+```
+/etc/opensearch-dashboards/
+```
 Check Permission
+
 ```
 chown opensearch-dashboards:opensearch-dashboards node1-key.pem node1.pem root-ca.pem
 ```
