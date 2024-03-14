@@ -3,6 +3,12 @@
 The following documentation is for basic configuration for production setup.
 
 ### Download OpenSearch
+
+Change directory
+
+```
+cd /home
+```
 Download both OpenSearch and OpenSearch-Dashboards packages.
 
 ```
@@ -219,6 +225,7 @@ curl https://opensearch.hungry-howard.com:9200 -u admin:Password123 -k
 ## OpenSearch-Dashboards
 
 Change directory
+
 ```
 cd /home
 ```
