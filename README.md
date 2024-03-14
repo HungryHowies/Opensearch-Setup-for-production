@@ -250,12 +250,17 @@ sudo systemctl enable opensearch-dashboards.service
 
 Configure the following in Opensearch-Dashboards.yaml file. 
 ```
-grep -Ev ^'(#|$)' opensearch_dashboards.yml 
+vi /etc/opensearch-dashboards/opensearch_dashboards.yml
+```
+(Optional) check opensearch-dashboards.yml file.
+ 
+```
+grep -Ev ^'(#|$)' /etc/opensearch-dashboards/opensearch_dashboards.yml 
 ```
 
 Example:
 
-This has  the default configurations need for Production setup and also  the configurations needed for SSO  using SAML.
+This has the default configurations need for Production setup and also  the configurations needed for SSO  using SAML.
 
 ```
 ---
