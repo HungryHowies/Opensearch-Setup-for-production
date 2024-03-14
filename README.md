@@ -194,11 +194,12 @@ vi /etc/opensearch/opensearch-security/internal_users.yml
 In  this section.
 
 ```
-new_user1:
-  	hash: "$2y$12$OKDLCZ1qLXnA5AMLKeKdIueW0e3m1y0nVf/GEBzom1BxNOykpw0Ee"
- 	 reserved: false
- 	 backend_roles:[] 	 
-  description: "New User"
+admin:
+  hash: "$2y$12$5oHqYFJAIhAO2w6s3ppROOy8WliwBnL.5uVpKTuGySnmbH3EyNZrW"
+  reserved: true
+  backend_roles:
+  - "admin"
+  description: "Demo admin user"
 ```
 
 ###  Execute security script.
