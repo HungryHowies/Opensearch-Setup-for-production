@@ -132,10 +132,10 @@ sudo openssl genrsa -out node1-key-temp.pem 2048
 sudo openssl pkcs8 -inform PEM -outform PEM -in node1-key-temp.pem -topk8 -nocrypt -v1 PBE-SHA1-3DES -out node1-key.pem
 ```
 ```
-sudo openssl req -new -key node1-key.pem -subj "/C=US/ST=IOWA/L=CEDAR/O=ZITADEL/OU=ADMIN/CN=opensearch.hungry-howard.com" -out node1.csr
+sudo openssl req -new -key node1-key.pem -subj "/C=US/ST=IOWA/L=CEDAR/O=ZITADEL/OU=ADMIN/CN=opensearch.domain.com" -out node1.csr
 ```
 ```
-sudo sh -c 'echo subjectAltName=DNS:opensearch.hungry-howard.com > node1.ext'
+sudo sh -c 'echo subjectAltName=DNS:opensearch.domain.com > node1.ext'
 ```
 ```
 sudo openssl x509 -req -in node1.csr -CA root-ca.pem -CAkey root-ca-key.pem -CAcreateserial -sha256 -out node1.pem -days 730 -extfile node1.ext
@@ -180,7 +180,7 @@ plugins.security.ssl.http.pemtrustedcas_filepath: /etc/opensearch/root-ca.pem
 plugins.security.authcz.admin_dn:
   - 'CN=ADMIN,OU=ADMIN,O=ZITADEL,L=CEDAR,ST=IOWA,C=US'
 plugins.security.nodes_dn:
-  - 'CN=opensearch.hungry-howard.com,OU=ADMIN,O=ZITADEL,L=CEDAR,ST=IOWA,C=US'
+  - 'CN=opensearch.domain.com,OU=ADMIN,O=ZITADEL,L=CEDAR,ST=IOWA,C=US'
 ```
 ###  Run the hash script 
 
@@ -215,12 +215,12 @@ systemctl restart opensearch
 ###  Execute security script.
   
 ```
-./securityadmin.sh -h opensearch.hungry-howard.com  -cd /etc/opensearch/opensearch-security/ -cacert /etc/opensearch/root-ca.pem -cert /etc/opensearch/admin.pem -key /etc/opensearch/admin-key.pem -icl -nhnv
+./securityadmin.sh -h opensearch.domain.com  -cd /etc/opensearch/opensearch-security/ -cacert /etc/opensearch/root-ca.pem -cert /etc/opensearch/admin.pem -key /etc/opensearch/admin-key.pem -icl -nhnv
 ```
 
 Check  the connection/status.
 ```
-curl https://opensearch.hungry-howard.com:9200 -u admin:Password123 -k
+curl https://opensearch.domain.com:9200 -u admin:Password123 -k
 ```
 ## OpenSearch-Dashboards
 
@@ -265,8 +265,8 @@ This has the default configurations need for Production setup and also  the conf
 ```
 ---
 server.port: 5601
-server.host: "opensearch.hungry-howard.com"
-server.name: "opensearch.hungry-howard.com"
+server.host: "opensearch.domain.com"
+server.name: "opensearch.domain.com"
 opensearchDashboards.index: ".opensearch_dashboards"
 opensearchDashboards.defaultAppId: "home"
 logging.dest: /var/log/opensearch-dashboards/opensearch-dashboards.log
@@ -316,7 +316,7 @@ chown opensearch-dashboards:opensearch-dashboards node1-key.pem node1.pem root-c
 
 Incert certifictae in keystory
 ```
-keytool -import -alias opensearch.hungry-howard.com  -file root-ca.pem  -keystore /usr/lib/jvm/java-17-openjdk-amd64/lib/security/cacerts -storepass changeit
+keytool -import -alias opensearch.domain.com  -file root-ca.pem  -keystore /usr/lib/jvm/java-17-openjdk-amd64/lib/security/cacerts -storepass changeit
 ```
 ### Restart Services
 
