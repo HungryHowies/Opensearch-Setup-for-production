@@ -260,14 +260,15 @@ grep -Ev ^'(#|$)' /etc/opensearch-dashboards/opensearch_dashboards.yml
 
 Example:
 
-This has the default configurations need for Production setup and also  the configurations needed for SSO  using SAML.
+This has the default configurations needed for Production setup and also  the configurations needed for SSO  using SAML.
+NOTE:  OS/OSD reports had a issue with e setting *opensearchDashboards.index:*. notes are shown below.
 
 ```
 ---
 server.port: 5601
 server.host: "opensearch.domain.com"
 server.name: "opensearch.domain.com"
-### opensearchDashboards.index: ".opensearch_dashboards" <--- this should be  commented out , if not reports  do not work ###########
+### opensearchDashboards.index: ".opensearch_dashboards" <--- this should be commented out, if not reports  do not work ###########
 opensearchDashboards.defaultAppId: "home"
 logging.dest: /var/log/opensearch-dashboards/opensearch-dashboards.log
 ml_commons_dashboards.enabled: true
