@@ -269,7 +269,7 @@ Example:
 
 This has the default configurations needed for Production setup and also  the configurations needed for SSO  using SAML.
 
-NOTE:  OS/OSD reports had a issue with e setting *opensearchDashboards.index:*. notes are shown below.
+NOTE:  OS/OSD Reports had a issue with the setting *opensearchDashboards.index:*. notes are shown below.
 
 ```
 ---
