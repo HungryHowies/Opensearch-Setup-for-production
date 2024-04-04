@@ -267,7 +267,7 @@ This has the default configurations need for Production setup and also  the conf
 server.port: 5601
 server.host: "opensearch.domain.com"
 server.name: "opensearch.domain.com"
-opensearchDashboards.index: ".opensearch_dashboards"
+### opensearchDashboards.index: ".opensearch_dashboards" <--- this should be  commented out , if not reports  do not work ###########
 opensearchDashboards.defaultAppId: "home"
 logging.dest: /var/log/opensearch-dashboards/opensearch-dashboards.log
 ml_commons_dashboards.enabled: true
