@@ -1,6 +1,13 @@
 # OpenSearch And OpenSearch-Dashboard Setup for Production
 
-The following documentation is for basic configuration for production setup.
+The following documentation is for basic configuration for production setup with Opensearch/Opensearch-dashboards-v2.11.1.
+
+## Prerequisite:
+* Ubuntu-22.0.4
+* Updates/Upgrades Completed
+* Network Configured (Static address and DNS)
+* Date/Time is set
+* JAVA_HOME is set
 
 ### Download OpenSearch
 
@@ -261,6 +268,7 @@ grep -Ev ^'(#|$)' /etc/opensearch-dashboards/opensearch_dashboards.yml
 Example:
 
 This has the default configurations needed for Production setup and also  the configurations needed for SSO  using SAML.
+
 NOTE:  OS/OSD reports had a issue with e setting *opensearchDashboards.index:*. notes are shown below.
 
 ```
